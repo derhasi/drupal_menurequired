@@ -1,8 +1,11 @@
-This repository is separated in different folders:
+This repository is separated in different development branches:
+that might move to separate repositories soon
 
-* annotation_1
-  - a new annotation module with API, to test some concepts and work out new ones. I hope some of this will be merged
-    into drupal.org/project/annotation
+* annotation
+http://github.com/derhasi/Derhasi-Drupal-Modules-dev/tree/annotation
 
-* annotation_marker
-  - a module to work with an annotation marker (x,y, width, height) as form element
+* imagecache
+http://github.com/derhasi/Derhasi-Drupal-Modules-dev/tree/imagecache
+
+* stats
+http://github.com/derhasi/Derhasi-Drupal-Modules-dev/tree/stats
