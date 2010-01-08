@@ -1,5 +1,5 @@
 This repository is separated in different development branches:
-that might move to separate repositories soon
+that might move to separate repositories.
 
 * annotation
 http://github.com/derhasi/Derhasi-Drupal-Modules-dev/tree/annotation
@@ -7,5 +7,9 @@ http://github.com/derhasi/Derhasi-Drupal-Modules-dev/tree/annotation
 * imagecache
 http://github.com/derhasi/Derhasi-Drupal-Modules-dev/tree/imagecache
 
+-------
+
+Former parts of this repository have their own repository now:
+
 * stats
-http://github.com/derhasi/Derhasi-Drupal-Modules-dev/tree/stats
+http://github.com/derhasi/stats
