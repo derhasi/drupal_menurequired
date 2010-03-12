@@ -26,41 +26,53 @@ function jqueryui_filter_filter($op, $delta = 0, $format = -1, $text = '', $cach
       // Add necessary bibs.
       jquery_ui_add('ui.tabs'); // @TODO settings
 
-      // Add settings
+      $class = "jqueryui-filter-tabs-$format";
+
+      // Add classes to JS
+      $settings = array('jqueryui_filter_tabs' => array($class));
+      drupal_add_js($settings, 'setting');
+
+      // Set wrapper
+      $text = "<div class=\"jqueryui-filter-tabs $class\">$text</div>";
 
       // Attach custom js
+      drupal_add_js(drupal_get_path('module', 'jqueryui_filter') .'/jqueryui_filter_tabs.js', 'module');
 
       return $text;
 
     case 'settings':
+      return array();
+      //
       $id = "jqueryui_filter_$format";
-
-      $form['tabs'] = array(
+      $form['jqueryui_filter_tabs'] = array(
         '#type' => 'fieldset',
         '#title' => t('Tabs'),
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
       );
-
-      $form['tabs'][$id .'_tabs_selectors'] = array(
+      $form['jqueryui_filter_tabs'][$id .'_tabs_selectors'] = array(
         '#type' => 'textfield',
-        '#title' => t('Tab Template'),
-        '#default_value' => variable_get($id .'_tabs_selectors','#tabs');
+        '#title' => t('Tabs selectors'),
+        '#default_value' => variable_get($id .'_tabs_selectors','#tabs'),
         '#description' => t('Enter a comma separated list of jquery selectors, that shall initiate the JQuery UI Tabs'),
       );
-      $form['tabs'][$id .'_tabs_wrapper_class'] = array(
+      $form['jqueryui_filter_tabs'][$id .'_tabs_wrapper_class'] = array(
         '#type' => 'textfield',
         '#title' => t('Wrapper class'),
-        '#default_value' => variable_get($id .'_tabs_wrapper_class','');
+        '#default_value' => variable_get($id .'_tabs_wrapper_class',''),
         '#description' => t('This class will be set with a div container as a wrapper, if none of the above selectors was found in text. Leave empty to have no wrapper div.'),
       );
-      $form[$id] = $form;
+      $form['jqueryui_filter_tabs'][$id .'_tabs_remove_wrapper_force'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('Remove wrapper div'),
+        '#default_value' => variable_get($id .'_tabs_wrapper_force',FALSE),
+      );
       return $form;
+
     case 'no cache':
       return TRUE;
+
     default:
       return $text;
-
   }
-
 }
