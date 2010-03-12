@@ -35,7 +35,7 @@ function jqueryui_filter_filter($op, $delta = 0, $format = -1, $text = '', $cach
       $class = "jqueryui-filter-tabs-$format";
 
       // Add classes to JS
-      $settings = array('jqueryui_filter_tabs' => array($class));
+      $settings = array('jqueryui_filter_tabs' => array($class => $class));
       drupal_add_js($settings, 'setting');
 
       // Set wrapper
