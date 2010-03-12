@@ -23,6 +23,12 @@ function jqueryui_filter_filter($op, $delta = 0, $format = -1, $text = '', $cach
       return $text;
 
     case "process":
+
+      // Additional CSS
+      $path = drupal_get_path('module', 'jquery_ui') .'/jquery.ui/themes/base/jquery-ui.css';
+      $path2 = drupal_get_path('module', 'jquery_ui') .'/jquery.ui/themes/base/ui.tabs.css';
+      drupal_add_css($path, 'module');
+      drupal_add_css($path2, 'module');
       // Add necessary bibs.
       jquery_ui_add('ui.tabs'); // @TODO settings
 
