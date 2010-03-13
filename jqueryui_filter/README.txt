@@ -1,5 +1,9 @@
+;$Id$
 
 This module implements jquery ui into input filters.
+
+It is currently located on http://github.com/derhasi/dev/tree/jqueryui_filter and
+was written by Johannes Haseitl - derhasi - http://derhasi.de
 
 Dependencies:
 - Jquery-UI with at least JqueryUI 1.7.2
