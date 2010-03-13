@@ -25,11 +25,14 @@ function jqueryui_filter_filter($op, $delta = 0, $format = -1, $text = '', $cach
     case "process":
 
       // Additional CSS
-      $path = drupal_get_path('module', 'jquery_ui') .'/jquery.ui/themes/base/jquery-ui.css';
-      $path2 = drupal_get_path('module', 'jquery_ui') .'/jquery.ui/themes/base/ui.tabs.css';
-      drupal_add_css($path, 'module');
-      drupal_add_css($path2, 'module');
-      // Add necessary bibs.
+      if (variable_get('jqueryui_filter_use_jqueryui_css', FALSE)) {
+        $jqueryui_css = drupal_get_path('module', 'jquery_ui') .'/jquery.ui/themes/base/jquery-ui.css';
+        drupal_add_css($jqueryui_css, 'module');
+      }
+      $tabs_css = drupal_get_path('module', 'jquery_ui') .'/jquery.ui/themes/base/ui.tabs.css';
+      drupal_add_css($tabs_css, 'module');
+
+      // Add necessary library.
       jquery_ui_add('ui.tabs'); // @TODO settings
 
       $class = "jqueryui-filter-tabs-$format";
@@ -55,18 +58,6 @@ function jqueryui_filter_filter($op, $delta = 0, $format = -1, $text = '', $cach
         '#title' => t('Tabs'),
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
-      );
-      $form['jqueryui_filter_tabs'][$id .'_tabs_selectors'] = array(
-        '#type' => 'textfield',
-        '#title' => t('Tabs selectors'),
-        '#default_value' => variable_get($id .'_tabs_selectors','#tabs'),
-        '#description' => t('Enter a comma separated list of jquery selectors, that shall initiate the JQuery UI Tabs'),
-      );
-      $form['jqueryui_filter_tabs'][$id .'_tabs_wrapper_class'] = array(
-        '#type' => 'textfield',
-        '#title' => t('Wrapper class'),
-        '#default_value' => variable_get($id .'_tabs_wrapper_class',''),
-        '#description' => t('This class will be set with a div container as a wrapper, if none of the above selectors was found in text. Leave empty to have no wrapper div.'),
       );
       $form['jqueryui_filter_tabs'][$id .'_tabs_remove_wrapper_force'] = array(
         '#type' => 'checkbox',
