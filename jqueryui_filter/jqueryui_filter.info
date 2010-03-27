@@ -1,7 +1,0 @@
-; $Id$
-name = "JQuery UI Filters"
-description = "Provides an input filter for building jqueryUI elements in body."
-core = 6.x
-package = User Interface
-dependencies[] = jquery_ui
-dependencies[] = jquery_update
