@@ -1,15 +1,6 @@
-This repository is separated in different development branches:
-that might move to separate repositories.
+This is an experimentation branch for custom_breadcrumbs patches
+[1] http://drupal.org/node/687512
+[2] http://drupal.org/node/754494
 
-* annotation
-http://github.com/derhasi/Derhasi-Drupal-Modules-dev/tree/annotation
-
-* imagecache
-http://github.com/derhasi/Derhasi-Drupal-Modules-dev/tree/imagecache
-
--------
-
-Former parts of this repository have their own repository now:
-
-* stats
-http://github.com/derhasi/stats
+A patched custom_breadcrumbs module (with [2]) is located in this repository.
+It is necessary for cb_menuidentifier to work.
