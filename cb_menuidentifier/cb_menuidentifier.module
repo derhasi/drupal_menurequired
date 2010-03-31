@@ -38,7 +38,12 @@ function cb_menuidentifier_pmt($title, $path, $attributes, $identifier) {
       $menu_item->p4, $menu_item->p5, $menu_item->p6,
       $menu_item->p7, $menu_item->p8, $menu_item->p9,
     );
-    $pids = array_filter($pids);
+   $pids = array_unique(array_filter($pids));
+
+    // Remove mlid
+    $mlid_key = array_search($menu_item->mlid, $pids);
+    if ($mlid_key !== FALSE) unset($pids[$mlid_key]);
+
     // return empty for no parents
     if (!count($pids)) return array();
 
