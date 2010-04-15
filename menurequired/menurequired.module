@@ -36,7 +36,7 @@ function menurequired_form_alter(&$form, &$form_state, $form_id) {
   elseif (isset($form['#node'])
       && $form_id == $form['#node']->type .'_node_form'
       && isset($form['menu']['link_title'])) {
-    if (variable_get('menurequired_'. $form['#node_type']->type, FALSE)) {
+    if (variable_get('menurequired_'. $form['#node']->type, FALSE)) {
       $form['menu']['link_title']['#required'] = in_array($form['#node']->type, $node_types);
     }
   }
