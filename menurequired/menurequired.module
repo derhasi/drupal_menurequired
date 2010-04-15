@@ -1,0 +1,62 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ *  Adds a setting to make menu items required in node forms.
+ */
+
+/**
+ * Implementation of hook_form_alter().
+ *
+ * - menu required for node add/edit form for special node types.
+ */
+function menurequired_form_alter(&$form, &$form_state, $form_id) {
+  // Node type form, for settings
+  if ($form_id == 'node_type_form') {
+    // Add fieldset if ctm is not installed
+    if (!function_exists('ctm')) {
+      $form['menu_settings'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('Menu Settings'),
+        '#description' => t('Enable Menu Settings for this content type.'),
+        '#collapsible' => TRUE,
+      );
+    }
+    $menu_required = variable_get('menurequired_'. $form['#node_type']->type, FALSE);
+    $form['menu_settings']['menurequired'] = array(
+      '#title' => t('Menu item is required'),
+      '#type' => 'checkbox',
+      '#default_value' => $menu_required,
+    );
+    // Additional submit function.
+    $form['#submit'][] = 'menurequired_node_type_form_submit';
+  }
+  // Node form
+  elseif (isset($form['#node'])
+      && $form_id == $form['#node']->type .'_node_form'
+      && isset($form['menu']['link_title'])) {
+    $node_types = variable_get('menurequired_nodetypes', array('page'));
+    $form['menu']['link_title']['#required'] = in_array($form['#node']->type, $node_types);
+  }
+  // Delete Content Type
+  elseif ($form_id == 'node_type_delete_confirm') {
+    $form['#submit'][] = 'menurequired_node_type_delete_confirm';
+  }
+}
+
+
+/**
+ *  Submission function for menurequired setting in node type form.
+ */
+function menurequired_node_type_form_submit(&$form, $form_state) {
+  $menurequired = array_filter($form_state['values']['menurequired']);
+  variable_set('menurequired_'. $form_state['values']['type'], $menurequired);
+}
+
+/**
+ * Delete settingon node type deletion.
+ */
+function menurequired_node_type_delete_confirm(&$form, $form_state) {
+  variable_del('menurequired_'. $form_state['values']['type']);
+}

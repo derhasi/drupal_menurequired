@@ -1,0 +1,8 @@
+; $Id$
+name = Menurequired
+description = Per node type required settings for menu item
+core = 6.x
+dependencies[] = node
+dependencies[] = menu
+
+version = 6.x-1.x-dev
