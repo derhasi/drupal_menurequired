@@ -51,7 +51,7 @@ function menurequired_form_alter(&$form, &$form_state, $form_id) {
  *  Submission function for menurequired setting in node type form.
  */
 function menurequired_node_type_form_submit(&$form, $form_state) {
-  $menurequired = array_filter($form_state['values']['menurequired']);
+  $menurequired = $form_state['values']['menurequired'];
   variable_set('menurequired_'. $form_state['values']['type'], $menurequired);
 }
 
