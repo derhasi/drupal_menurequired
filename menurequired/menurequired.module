@@ -15,7 +15,7 @@ function menurequired_form_alter(&$form, &$form_state, $form_id) {
   // Node type form, for settings
   if ($form_id == 'node_type_form') {
     // Add fieldset if ctm is not installed
-    if (!function_exists('ctm')) {
+    if (!module_exists('ctm')) {
       $form['menu_settings'] = array(
         '#type' => 'fieldset',
         '#title' => t('Menu Settings'),
@@ -36,8 +36,9 @@ function menurequired_form_alter(&$form, &$form_state, $form_id) {
   elseif (isset($form['#node'])
       && $form_id == $form['#node']->type .'_node_form'
       && isset($form['menu']['link_title'])) {
-    $node_types = variable_get('menurequired_nodetypes', array('page'));
-    $form['menu']['link_title']['#required'] = in_array($form['#node']->type, $node_types);
+    if (variable_get('menurequired_'. $form['#node_type']->type, FALSE)) {
+      $form['menu']['link_title']['#required'] = in_array($form['#node']->type, $node_types);
+    }
   }
   // Delete Content Type
   elseif ($form_id == 'node_type_delete_confirm') {
