@@ -36,8 +36,7 @@ function menurequired_form_alter(&$form, &$form_state, $form_id) {
   elseif (isset($form['#node'])
       && $form_id == $form['#node']->type .'_node_form'
       && isset($form['menu']['link_title'])) {
-      $form['menu']['link_title']['#required'] = variable_get('menurequired_'. $form['#node']->type, FALSE);
-    }
+    $form['menu']['link_title']['#required'] = variable_get('menurequired_'. $form['#node']->type, FALSE);
   }
   // Delete Content Type
   elseif ($form_id == 'node_type_delete_confirm') {
