@@ -15,7 +15,7 @@ function menurequired_form_alter(&$form, &$form_state, $form_id) {
   // Node type form, for settings
   if ($form_id == 'node_type_form') {
     // Add fieldset if ctm is not installed
-    if (!module_exists('ctm') && ) {
+    if (!module_exists('ctm')) {
       $form['menu_settings'] = array(
         '#type' => 'fieldset',
         '#title' => t('Menu Settings'),
